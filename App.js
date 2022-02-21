@@ -7,11 +7,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather, MaterialIcons, FontAwesome5, AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import ProfileScreen from './screens/Profile';
-import SettingsScreen from './screens/Settings';
-import SavedScreen from './screens/Saved';
+import ForumScreen from './screens/Forum';
+import MessageScreen from './screens/Messages';
 import NavItems from './constants/NavItems';
-import StreamScreen from './screens/Stream.js';
-import ChartScreen from './screens/MyCharts.js';
+import TrackingScreen from './screens/Tracking.js';
 
 import NavIcon from './components/NavIcon.js';
 import Header from './components/Header.js';
@@ -22,13 +21,7 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator 
-        //initialRouteName="Profile"
-        //drawerContentOptions={{
-        //  activeTintColor: '#e91e63',
-        //  itemStyle: { marginVertical: 10 },
-        //}}
-      >
+      <Tab.Navigator>
         {
           NavItems.map(drawer => <Tab.Screen 
             key={drawer.name}
@@ -44,10 +37,9 @@ export default function App() {
 	    }}
 	   component={
   	       drawer.name==='Profile' ? ProfileScreen
-  	       : drawer.name==='Settings' ? SettingsScreen
-  	       : drawer.name==='Saved Items' ? SavedScreen
-  	       : drawer.name==='MyChart' ? ChartScreen
-  	       : StreamScreen
+  	       : drawer.name==='Forum' ? ForumScreen 
+  	       : drawer.name==='Tracking' ? TrackingScreen 
+  	       : MessageScreen 
 	   }
           />)
         }

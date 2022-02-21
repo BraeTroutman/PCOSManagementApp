@@ -6,26 +6,20 @@ export default [
 	screen:'ProfileScreen'
     },
     {
-        name:'Stream',
+        name:'Forum',
         iconType:'MaterialCommunityIcons',
         iconName:'post-outline',
-	screen:'StreamScreen'
+	screen:'ForumScreen'
     },
     {
-        name:'Saved Items',
+        name:'Messages',
         iconType:'MaterialCommunityIcons',
         iconName:'bookmark-check-outline',
-	screen:'SavedScreen'
+	screen:'MessageScreen'
     },
-    {	name:'MyChart',
+    {	name:'Tracking',
 	iconType:'AntDesign',
 	iconName:'calendar',
-	screen:'ChartScreen'
-    },
-    {
-        name:'Settings',
-        iconType:'Feather',
-        iconName:'settings',
-	screen:'SettingsScreen'
+	screen:'TrackingScreen'
     }
 ]

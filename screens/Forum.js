@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { View, Text } from "react-native";
 
-export default function SettingsScreen() {
+export default function ForumScreen() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text style={{fontSize:16,fontWeight:'700'}}>Settings Screen</Text>
+        <Text style={{fontSize:16,fontWeight:'700'}}>Forum</Text>
       </View>
     );
   }
