@@ -11,13 +11,13 @@ Once you've installed node, clone the repository and enter the project directory
 Then run:
 
 ```
-npm install
+$ npm install
 ```
 
 If you need to install any other packages on in the project, use the expo cli rather than `npm` for installation (because npm might install versions of our dependencies that are incompatible with expo. You can do this by substituting `expo` for `npm` when installing, e.g.
 
 ```
-expo install @react-native-storage/async-storage
+$ expo install @react-native-storage/async-storage
 ```
 
 ## Dependencies
