@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Button, Text, StyleSheet, View } from 'react-native';
 
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather, MaterialIcons, FontAwesome5, AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
@@ -15,7 +14,6 @@ import ConnectionsScreen from './screens/Connections.js';
 import NavIcon from './components/NavIcon.js';
 import Header from './components/Header.js';
 
-const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -33,7 +31,8 @@ export default function App() {
 			name={drawer.iconName} 
 			size={24} 
 			color={focused ? "#ace1af" : "black"}
-		    />
+		    />,
+		headerRight: drawer.headerRight
 	    }}
 	    component={
   	       drawer.name==='Profile' ? ProfileScreen
@@ -48,7 +47,7 @@ export default function App() {
 	    key={"Connections"}
 	    options={{
 		tabBarButton: () => null,
-		tabBarVisible: false
+		tabBarVisible: false,
 	    }}
 	    component={ConnectionsScreen}
 	/>

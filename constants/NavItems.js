@@ -1,9 +1,11 @@
+import { Button } from 'react-native';
+
 export default [
     {
         name:'Profile',
         iconType:'MaterialIcons',
         iconName:'person-outline',
-	screen:'ProfileScreen'
+	screen:'ProfileScreen',
     },
     {
         name:'Forum',
