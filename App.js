@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Button, Text, StyleSheet, View } from 'react-native';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
@@ -11,7 +11,7 @@ import ForumScreen from './screens/Forum';
 import MessageScreen from './screens/Messages';
 import NavItems from './constants/NavItems';
 import TrackingScreen from './screens/Tracking.js';
-
+import ConnectionsScreen from './screens/Connections.js';
 import NavIcon from './components/NavIcon.js';
 import Header from './components/Header.js';
 
@@ -35,14 +35,23 @@ export default function App() {
 			color={focused ? "#ace1af" : "black"}
 		    />
 	    }}
-	   component={
+	    component={
   	       drawer.name==='Profile' ? ProfileScreen
   	       : drawer.name==='Forum' ? ForumScreen 
   	       : drawer.name==='Tracking' ? TrackingScreen 
   	       : MessageScreen 
-	   }
+	    }
           />)
-        }
+	}
+	<Tab.Screen
+	    name={"Connections"}
+	    key={"Connections"}
+	    options={{
+		tabBarButton: () => null,
+		tabBarVisible: false
+	    }}
+	    component={ConnectionsScreen}
+	/>
       </Tab.Navigator>
     </NavigationContainer>
   );
