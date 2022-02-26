@@ -21,18 +21,21 @@ $ expo install @react-native-storage/async-storage
 ```
 
 ## Dependencies
+
 ```
-pcos-mymanager@1.0.0 
+pcos-mymanager@1.0.0 /home/pi/Documents/class/softeng/PCOSManagementApp
 ├── @babel/core@7.16.12
 ├── @react-native-async-storage/async-storage@1.15.17
 ├── @react-navigation/bottom-tabs@6.2.0
-├── @react-navigation/drawer@6.2.0
+├── @react-navigation/native-stack@6.5.0
 ├── expo-status-bar@1.2.0
 ├── expo@44.0.5
 ├── react-dom@17.0.1
+├── react-native-elements@3.4.2
 ├── react-native-reanimated@2.3.1
 ├── react-native-web@0.17.1
 ├── react-native@0.64.3
 ├── react-navigation-stack@2.10.4
 └── react@17.0.1
 ```
+
