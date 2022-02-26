@@ -1,11 +1,23 @@
-import * as React from 'react';
-import { View, Text } from "react-native";
+import React, { useState } from 'react';
+import { TextInput, View, Text } from "react-native";
+import { SearchBar } from 'react-native-elements';
+
+const MyBar = () => { 
+    const [search, setSearch] = useState("") 
+    const updateSearch = (search) => setSearch(search);
+    return (
+	<SearchBar
+	    placeHolder="Type here..."
+	    onChangeText={updateSearch}
+	    value={search}
+	/>
+    );
+};
 
 export default function ConnectionsScreen() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text style={{fontSize:16,fontWeight:'700'}}>Connections Screen</Text>
-
+      <View>
+     	  <MyBar /> 
       </View>
     );
-  }
+}

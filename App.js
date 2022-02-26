@@ -9,10 +9,10 @@ import ProfileScreen from './screens/Profile';
 import ForumScreen from './screens/Forum';
 import MessageScreen from './screens/Messages';
 import NavItems from './constants/NavItems';
-import TrackingScreen from './screens/Tracking.js';
-import ConnectionsScreen from './screens/Connections.js';
-import NavIcon from './components/NavIcon.js';
-import Header from './components/Header.js';
+import TrackingScreen from './screens/Tracking';
+import ConnectionsScreen from './screens/Connections';
+import NavIcon from './components/NavIcon';
+import Header from './components/Header';
 
 const Tab = createBottomTabNavigator();
 
