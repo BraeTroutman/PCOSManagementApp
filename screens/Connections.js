@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, FlatList, TextInput, View, SafeAreaView, Text, StatusBar } from "react-native";
 import { SearchBar } from 'react-native-elements';
 
@@ -25,23 +25,6 @@ export default function ConnectionsScreen() {
     );
 }
 
-const TESTDATA = fetch('https://jsonplaceholder.typicode.com/posts').then((response) => response.json).catch((error) => console.log(error));
-
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },
-];
-
 const Item = ({ title }) => {
   return (<View>
     <Text>{title}</Text>
@@ -52,13 +35,24 @@ const List = () => {
   const renderItem = ({ item }) => {
     return (<Item title={item.title} />);
   };
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const DATA = async () => {
+      const data = await fetch("https://jsonplaceholder.typicode.com/posts").then(res => res.json());
+      setData(data);
+      setLoading(false);
+  }
+
+  useEffect(() => DATA(), []);
 
   return (
     <SafeAreaView>
       <FlatList
-        data={DATA}
+        style={{marginBottom: 200}}
+        data={data}
         renderItem={({ item }) => (
-	    <Text>{item.title}</Text>
+	    <Text style={{backgroundColor: '#ace1af', borderColor: 'black', marginTop: 5}}>{item.title}</Text>
 	)}
       />
     </SafeAreaView>
