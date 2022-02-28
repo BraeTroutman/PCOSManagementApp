@@ -1,61 +1,66 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, FlatList, TextInput, View, SafeAreaView, Text, StatusBar } from "react-native";
+import {
+    StyleSheet,
+    FlatList,
+    TextInput,
+    View,
+    SafeAreaView,
+    Text,
+    StatusBar
+} from "react-native";
 import { SearchBar } from 'react-native-elements';
 
-const ConnectionsSearch = () => { 
-    const [search, setSearch] = useState("") 
-    const updateSearch = (search) => setSearch(search);
-    return (
-	<SafeAreaView>
-	<SearchBar
-	    placeHolder="Type here..."
-	    onChangeText={updateSearch}
-	    value={search}
-	/>
-	<List/>	
-	</SafeAreaView>
-    );
-};
-
 export default function ConnectionsScreen() {
-    return (
-      <View>
-     	<ConnectionsSearch/> 
-      </View>
+    const [search, setSearch] = useState("");
+    const updateSearch = (search) => {
+        setSearch(search)
+        setSubRes(fullRes.filter((item) => item.title.includes(search)));
+    }
+    const [fullRes, setFullRes] = useState([]);
+    const [subRes, setSubRes] = useState([]);
+
+    const DATA = async () => {
+        const data = await fetch("https://jsonplaceholder.typicode.com/posts").then(res => res.json());
+        setFullRes(data);
+        setSubRes(data);
+    }
+
+    useEffect(() => DATA(), []);
+
+    const ItemSeparatorView = () => {
+        return (
+            // Flat List Item Separator
+            <View style = {{
+                    height: 0.5,
+                    width: '100%',
+                    backgroundColor: '#C8C8C8',
+                }}
+            />
+        );
+    };
+
+    return ( 
+	<View>
+        <SearchBar 
+	    round 
+	    placeHolder="Type here..."
+            onChangeText={
+                updateSearch
+            }
+            value={
+                search
+            }
+        /> 
+	<FlatList 
+	    data={subRes}
+            renderItem={({item}) => ( 
+		<Text onPress={() => alert(item.title)}> 
+		    {item.title} 
+		</Text>
+            )}
+	    ItemSeparatorComponent={ItemSeparatorView}
+        /> 
+	</View>
     );
-}
-
-const Item = ({ title }) => {
-  return (<View>
-    <Text>{title}</Text>
-  </View>);
-};
-
-const List = () => {
-  const renderItem = ({ item }) => {
-    return (<Item title={item.title} />);
-  };
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const DATA = async () => {
-      const data = await fetch("https://jsonplaceholder.typicode.com/posts").then(res => res.json());
-      setData(data);
-      setLoading(false);
-  }
-
-  useEffect(() => DATA(), []);
-
-  return (
-    <SafeAreaView>
-      <FlatList
-        style={{marginBottom: 200}}
-        data={data}
-        renderItem={({ item }) => (
-	    <Text style={{backgroundColor: '#ace1af', borderColor: 'black', marginTop: 5}}>{item.title}</Text>
-	)}
-      />
-    </SafeAreaView>
-  );
 }
 
