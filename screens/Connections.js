@@ -40,7 +40,7 @@ export default function ConnectionsScreen() {
     };
 
     return ( 
-	<View>
+	<View style={styles.container}>
         <SearchBar 
 	    round 
 	    placeHolder="Type here..."
@@ -54,7 +54,7 @@ export default function ConnectionsScreen() {
 	<FlatList 
 	    data={subRes}
             renderItem={({item}) => ( 
-		<Text onPress={() => alert(item.title)}> 
+		<Text style={styles.item} onPress={() => alert(item.title)}> 
 		    {item.title} 
 		</Text>
             )}
@@ -63,4 +63,13 @@ export default function ConnectionsScreen() {
 	</View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+	
+    },
+    item: {
+	padding: 10,
+    },
+});
 
