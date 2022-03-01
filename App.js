@@ -11,6 +11,8 @@ import MessageScreen from './screens/Messages';
 import NavItems from './constants/NavItems';
 import TrackingScreen from './screens/Tracking';
 import ConnectionsScreen from './screens/Connections';
+import InitScreen from './screens/InitialScreen';
+
 import NavIcon from './components/NavIcon';
 import Header from './components/Header';
 
@@ -51,6 +53,15 @@ export default function App() {
 	    }}
 	    component={ConnectionsScreen}
 	/>
+        <Tab.Screen
+      	    name={"InitialLogin"}
+            key={"InitialLogin"}
+            options={{
+		tabBarButton: () => null,
+		tabBarVisible: false,
+	    }}
+      	    component={InitScreen}
+      	/>
       </Tab.Navigator>
     </NavigationContainer>
   );

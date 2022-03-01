@@ -8,7 +8,7 @@ import {
     Text,
     StatusBar,
     Modal,
-    Button
+    Image
 } from "react-native";
 import { SearchBar } from 'react-native-elements';
 
@@ -50,15 +50,31 @@ export default function ConnectionsScreen() {
 	return (
 	    <Modal
 	        animationType="slide"
+	    	transparent={true}
 	        visible={profileVisible}
 	    	onRequestClose={() => {setProfileVisible(!profileVisible)}}
 	    >
 		<View style={{
 		    flex: 1, 
 		    justifyContent: 'center', 
-		    alignItems: 'center'
+		    alignItems: 'center',
+		    backgroundColor: 'white',
+		    padding: 5,
+	 	    marginTop: 100,
+		    marginBottom: 100,
+		    marginLeft: 50,
+		    marginRight: 50,
+		    borderRadius: 20,
 		}}>
-	    	    <Text>{JSON.stringify(currentProf)}</Text>
+	    	    <Image 
+	           	style={{
+			    height: '15%',
+			    width: '30%',
+			    borderRadius: 50
+		    	}} 
+	    		source={{uri: currentProf.picture.large}}
+	    	    />
+	    	    <Text>{currentProf.name.first} {currentProf.name.last}</Text> 
 	        </View>
 	    </Modal>
 	);
