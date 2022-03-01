@@ -6,7 +6,9 @@ import {
     View,
     SafeAreaView,
     Text,
-    StatusBar
+    StatusBar,
+    Modal,
+    Button
 } from "react-native";
 import { SearchBar } from 'react-native-elements';
 
@@ -19,13 +21,13 @@ export default function ConnectionsScreen() {
     const [fullRes, setFullRes] = useState([]);
     const [subRes, setSubRes] = useState([]);
 
-    const DATA = async () => {
+    const fetchData = async () => {
         const data = await fetch("https://jsonplaceholder.typicode.com/posts").then(res => res.json());
         setFullRes(data);
         setSubRes(data);
     }
 
-    useEffect(() => DATA(), []);
+    useEffect(() => fetchData(), []);
 
     const ItemSeparatorView = () => {
         return (
@@ -39,6 +41,21 @@ export default function ConnectionsScreen() {
         );
     };
 
+    const [profileVisible, setProfileVisible] = useState(false);
+    const [currentProf, setCurrentProf] = useState({name: "brae"});
+
+    const ProfileView = () => {
+	return (
+	    <Modal
+	        animationType="slide"
+	        visible={profileVisible}
+	    	onRequestClose={() => {setProfileVisible(!profileVisible)}}
+	    >
+		<View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}><Text>{JSON.stringify(currentProf)}</Text></View>
+	    </Modal>
+	);
+    };
+
     return ( 
 	<View style={styles.container}>
         <SearchBar 
@@ -50,11 +67,16 @@ export default function ConnectionsScreen() {
             value={
                 search
             }
-        /> 
+        />
+	<ProfileView/>
 	<FlatList 
 	    data={subRes}
             renderItem={({item}) => ( 
-		<Text style={styles.item} onPress={() => alert(item.title)}> 
+		<Text style={styles.item} onPress={
+		    () => {
+			setCurrentProf(item);
+		    	setProfileVisible(true);
+		    }}> 
 		    {item.title} 
 		</Text>
             )}
