@@ -15,16 +15,18 @@ import { SearchBar } from 'react-native-elements';
 export default function ConnectionsScreen() {
     const [search, setSearch] = useState("");
     const updateSearch = (search) => {
-        setSearch(search)
-        setSubRes(fullRes.filter((item) => item.title.includes(search)));
+        setSearch(search);
+        setSubRes(fullRes.filter((item) => {
+	    return (item.name.first + ' ' + item.name.last).toLowerCase().includes(search.toLowerCase());
+	}));
     }
     const [fullRes, setFullRes] = useState([]);
     const [subRes, setSubRes] = useState([]);
 
     const fetchData = async () => {
-        const data = await fetch("https://jsonplaceholder.typicode.com/posts").then(res => res.json());
-        setFullRes(data);
-        setSubRes(data);
+        const data = await fetch("https://randomuser.me/api/?results=50").then(res => res.json());
+        setFullRes(data.results);
+        setSubRes(data.results);
     }
 
     useEffect(() => fetchData(), []);
@@ -51,7 +53,13 @@ export default function ConnectionsScreen() {
 	        visible={profileVisible}
 	    	onRequestClose={() => {setProfileVisible(!profileVisible)}}
 	    >
-		<View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}><Text>{JSON.stringify(currentProf)}</Text></View>
+		<View style={{
+		    flex: 1, 
+		    justifyContent: 'center', 
+		    alignItems: 'center'
+		}}>
+	    	    <Text>{JSON.stringify(currentProf)}</Text>
+	        </View>
 	    </Modal>
 	);
     };
@@ -69,7 +77,10 @@ export default function ConnectionsScreen() {
             }
         />
 	<ProfileView/>
-	<FlatList 
+	<FlatList
+	    style={{
+		marginBottom: 75 
+	    }}
 	    data={subRes}
             renderItem={({item}) => ( 
 		<Text style={styles.item} onPress={
@@ -77,10 +88,11 @@ export default function ConnectionsScreen() {
 			setCurrentProf(item);
 		    	setProfileVisible(true);
 		    }}> 
-		    {item.title} 
+		    {item.name.first} {item.name.last} 
 		</Text>
             )}
 	    ItemSeparatorComponent={ItemSeparatorView}
+	    keyExtractor={(item) => item.login.username}
         /> 
 	</View>
     );
