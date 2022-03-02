@@ -45,7 +45,11 @@ export default function ConnectionsScreen() {
     };
 
     const [profileVisible, setProfileVisible] = useState(false);
-    const [currentProf, setCurrentProf] = useState({picture: {large: null}, name: {first: null, last: null}});
+    const [currentProf, setCurrentProf] = useState({
+	picture: {large: null}, 
+	name: {first: null, last: null}, 
+	login: {username: null}}
+    );
 
     const ProfileView = () => {
 	return (
@@ -133,7 +137,13 @@ export default function ConnectionsScreen() {
 		margin: 10, 
 		borderColor: 'black',
 		borderWidth: 2
-	    }} source={{uri: user.picture.large}}/>
+	    }} 
+	        source={{uri: user.picture.large}}
+	    	onPress={() => {
+		    setCurrentProf(user);
+		    setProfileVisible(true);
+		}}
+	    />
 	))}	
 	</View>
 	</View>
