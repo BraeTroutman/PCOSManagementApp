@@ -11,6 +11,7 @@ import {
     Image
 } from "react-native";
 import { SearchBar } from 'react-native-elements';
+import Users from '../constants/Users';
 
 export default function ConnectionsScreen() {
     const [search, setSearch] = useState("");
@@ -26,7 +27,7 @@ export default function ConnectionsScreen() {
     const fetchData = async () => {
         const data = await fetch("https://randomuser.me/api/?results=50").then(res => res.json());
         setFullRes(data.results);
-        setSubRes(data.results);
+        setSubRes('');
     }
 
     useEffect(() => fetchData(), []);
@@ -44,29 +45,30 @@ export default function ConnectionsScreen() {
     };
 
     const [profileVisible, setProfileVisible] = useState(false);
-    const [currentProf, setCurrentProf] = useState({name: "brae"});
+    const [currentProf, setCurrentProf] = useState({picture: {large: null}, name: {first: null, last: null}});
 
     const ProfileView = () => {
 	return (
 	    <Modal
-	        animationType="slide"
+	       	animationType="slide"
 	    	transparent={true}
-	        visible={profileVisible}
-	    	onRequestClose={() => {setProfileVisible(!profileVisible)}}
+	    	visible={profileVisible}
+	    	onRequestClose={() => setProfileVisible(!profileVisible)}
 	    >
-		<View style={{
-		    flex: 1, 
-		    justifyContent: 'center', 
-		    alignItems: 'center',
-		    backgroundColor: 'white',
-		    padding: 5,
-	 	    marginTop: 100,
-		    marginBottom: 100,
-		    marginLeft: 50,
-		    marginRight: 50,
-		    borderRadius: 20,
-		}}>
-	    	    <Image 
+	        <View
+	    	    style={{
+			flex: 1,
+			justifyContent: 'center',
+			alignItems: 'center',
+			marginTop: 100,
+			marginBottom: 100,
+			marginRight: 50,
+			marginLeft: 50,
+			backgroundColor: 'white',
+			borderRadius: 20, 
+		    }}
+	    	>
+    	            <Image 
 	           	style={{
 			    height: '15%',
 			    width: '30%',
@@ -74,11 +76,19 @@ export default function ConnectionsScreen() {
 		    	}} 
 	    		source={{uri: currentProf.picture.large}}
 	    	    />
-	    	    <Text>{currentProf.name.first} {currentProf.name.last}</Text> 
-	        </View>
+	        <Text style={{
+			fontSize: 20,
+			fontWeight: 'bold',
+		    }}>
+	    		{currentProf.name.first} {currentProf.name.last}
+	    	    </Text>
+	    	    <Text>{currentProf.email}</Text>
+	    	</View>
 	    </Modal>
 	);
-    };
+    }
+
+    const [users, setUsers] = useState(Users);
 
     return ( 
 	<View style={styles.container}>
@@ -88,6 +98,9 @@ export default function ConnectionsScreen() {
             onChangeText={
                 updateSearch
             }
+	    onCancel={() => setSubRes('')}
+	    onClear={() => setSubRes('')}
+	    showCancel={true}
             value={
                 search
             }
@@ -95,21 +108,34 @@ export default function ConnectionsScreen() {
 	<ProfileView/>
 	<FlatList
 	    style={{
-		marginBottom: 75 
 	    }}
 	    data={subRes}
-            renderItem={({item}) => ( 
-		<Text style={styles.item} onPress={
+            renderItem={({item}) => (
+		<View style={styles.item}>
+		<Text onPress={
 		    () => {
 			setCurrentProf(item);
 		    	setProfileVisible(true);
 		    }}> 
 		    {item.name.first} {item.name.last} 
 		</Text>
+		</View>
             )}
 	    ItemSeparatorComponent={ItemSeparatorView}
 	    keyExtractor={(item) => item.login.username}
-        /> 
+        />
+	<View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}>
+	{Users.map((user) => (
+	    <Image style={{
+		height: 75, 
+		width: 75, 
+		borderRadius: 50, 
+		margin: 10, 
+		borderColor: 'black',
+		borderWidth: 2
+	    }} source={{uri: user.picture.large}}/>
+	))}	
+	</View>
 	</View>
     );
 }
@@ -119,7 +145,10 @@ const styles = StyleSheet.create({
 	
     },
     item: {
+	flex: 1,
+	flexDirection: 'row',
 	padding: 10,
+	alignItems: 'center',
     },
 });
 
