@@ -1,21 +1,13 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { AsyncStorage } from 'react-native';
 
 export function store(key, value) {
-    try {
-	await AsyncStorage.setItem(key, value);
-	return true;
-    } catch (e) {
-	return false;
-    }
+    return AsyncStorage.setItem(key, value).then((val) => val);
 }
 
 export function load(key) {
-    try {
-	const value = await AsyncStorage.getItem(key);
-	return value;
-    } catch {
-	return false;
-    }
+    const [data, setData] = useState({});
+    AsyncStorage.getItem(key).then((val) => setData(val));
+    return data;
 }
 

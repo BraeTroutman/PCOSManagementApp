@@ -1,10 +1,15 @@
 import * as React from 'react';
-import { View, Text } from "react-native";
+import { Button, View, Text } from "react-native";
+import { load, store } from '../utils/AsyncWrapper';
 
-export default function ForumScreen() {
+export default function ForumScreen({ navigation }) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text style={{fontSize:16,fontWeight:'700'}}>Forum</Text>
+          <Button
+	      title="Initial Login Screen"
+	      onPress={() => navigation.navigate('InitialLogin')}
+	  />
       </View>
     );
   }
+
