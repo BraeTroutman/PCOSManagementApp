@@ -6,8 +6,6 @@ import { Dimensions } from 'react-native';
 import { screenWidth } from 'react-native-calendars/src/expandableCalendar/commons';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
-// I commented out this line because it's giving me compilation issues and managePanProps is not used anywhere
-//import { managePanProps } from 'react-native-gesture-handler/lib/typescript/handlers/PanGestureHandler';
  
 const linedata = {
      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat','Sun'],
@@ -36,7 +34,7 @@ const styles = StyleSheet.create({
      },
    });
  
-export default function TrackingScreen() {
+export default function TrackingScreen({ navigation }) {
    return (
      <View style={{ flex: 1, alignItems: 'stretch', justifyContent: 'space-around' }}>
        <SafeAreaView style={styles.container}>
@@ -72,7 +70,7 @@ export default function TrackingScreen() {
            }}
            />
            <Button title = "Daily report"
-             onPress={() => {navigation.navigate('report')}}
+             onPress={() => {navigation.navigate('Report')}}
            />
            <Text>
              Weight tracking

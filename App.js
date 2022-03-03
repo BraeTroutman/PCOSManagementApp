@@ -12,6 +12,7 @@ import NavItems from './constants/NavItems';
 import TrackingScreen from './screens/Tracking';
 import ConnectionsScreen from './screens/Connections';
 import InitScreen from './screens/InitialScreen';
+import ReportScreen from './screens/Report'
 
 import NavIcon from './components/NavIcon';
 import Header from './components/Header';
@@ -61,6 +62,15 @@ export default function App() {
 		tabBarVisible: false,
 	    }}
       	    component={InitScreen}
+      	/>
+		<Tab.Screen
+      	    name={"Report"}
+            key={"Report"}
+			options={{
+			tabBarButton: () => null,
+			tabBarVisible: false,
+			}}
+      	    component={ReportScreen}
       	/>
       </Tab.Navigator>
     </NavigationContainer>
