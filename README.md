@@ -30,7 +30,10 @@ pcos-mymanager@1.0.0 /home/pi/Documents/class/softeng/PCOSManagementApp
 ├── @react-navigation/native-stack@6.5.0
 ├── expo-status-bar@1.2.0
 ├── expo@44.0.5
+├── node-fetch@1.7.3
 ├── react-dom@17.0.1
+├── react-native-calendars@1.1278.0
+├── react-native-chart-kit@6.12.0
 ├── react-native-elements@3.4.2
 ├── react-native-reanimated@2.3.1
 ├── react-native-web@0.17.1
