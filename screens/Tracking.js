@@ -4,6 +4,10 @@ import {LineChart, BarChart} from 'react-native-chart-kit';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import { Dimensions } from 'react-native';
 import { screenWidth } from 'react-native-calendars/src/expandableCalendar/commons';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
+// I commented out this line because it's giving me compilation issues and managePanProps is not used anywhere
+//import { managePanProps } from 'react-native-gesture-handler/lib/typescript/handlers/PanGestureHandler';
  
 const linedata = {
      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat','Sun'],
