@@ -25,23 +25,23 @@ export default class Login extends React.Component{
     render(){
         return (
             <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start'}}>
-            <SafeAreaView style={styles.container}>
-                <ScrollView style={styles.ScrollView} vertical={true} horizontal={false}>
+            <SafeAreaView style={gitstyles.container}>
+                <ScrollView style={gitstyles.ScrollView} vertical={true} horizontal={false}>
                     <Text style={{fontSize:30,fontWeight:'700',lineHeight:30,marginVertical:10}}>Welcome!{"\n"}
                     Please answer following questions to create your profile. </Text>
                     <Text style={{fontSize:20,fontWeight:'500',marginVertical:30}}>Please enter your email.</Text>
                     <TextInput
-                        style={styles.input}
+                        style={gitstyles.input}
                         placeholder='email'
                         onChangeText={(text)=>this.getUserName(text)}/>
                     <Text style={{fontSize:20,fontWeight:'500',marginVertical:30}}>Please set a username.</Text>
                     <TextInput
-                        style={styles.input}
+                        style={gitstyles.input}
                         placeholder='username'
                         onChangeText={(text)=>this.getPassWord(text)}/>
                     <Text style={{fontSize:20,fontWeight:'500',marginVertical:30}}>Please set your password</Text>
                     <TextInput
-                        style={styles.input}
+                        style={gitstyles.input}
                         placeholder='password'
                         onChangeText={(text)=>this.getPassWord(text)}/>
                     <Text style={{fontSize:20,fontWeight:'500',marginVertical:20}}>What's your relationship with PCOS? </Text>
