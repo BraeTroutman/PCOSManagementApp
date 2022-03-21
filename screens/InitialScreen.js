@@ -12,7 +12,7 @@ import * as React from 'react';
 import { TextInput } from 'react-native-gesture-handler';
 
 
-export default class login extends React.Component{
+export default class Login extends React.Component{
     constructor(props){
         super(props);
         this.state={
