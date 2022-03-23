@@ -8,7 +8,8 @@ import {
     Text,
     StatusBar,
     Modal,
-    Image
+    Image,
+	TouchableOpacity
 } from "react-native";
 import { SearchBar } from 'react-native-elements';
 import Users from '../constants/Users';
@@ -72,7 +73,8 @@ export default function ConnectionsScreen() {
 			borderRadius: 20, 
 		    }}
 	    	>
-    	            <Image 
+				<TouchableOpacity onPress={() => setProfileVisible(!profileVisible)}><Text>X</Text></TouchableOpacity>
+    	        <Image 
 	           	style={{
 			    height: '15%',
 			    width: '30%',
@@ -135,7 +137,6 @@ export default function ConnectionsScreen() {
 		width: 75, 
 		borderRadius: 50, 
 		margin: 10, 
-		borderColor: 'black',
 		borderWidth: 2
 	    }} 
 	        source={{uri: user.picture.large}}
