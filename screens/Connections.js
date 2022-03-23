@@ -9,7 +9,8 @@ import {
     StatusBar,
     Modal,
     Image,
-	TouchableOpacity
+	TouchableOpacity,
+	TouchableWithoutFeedback
 } from "react-native";
 import { SearchBar } from 'react-native-elements';
 import Users from '../constants/Users';
