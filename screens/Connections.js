@@ -20,8 +20,8 @@ export default function ConnectionsScreen() {
     const updateSearch = (search) => {
         setSearch(search);
         setSubRes(fullRes.filter((item) => {
-	    return (item.name.first + ' ' + item.name.last).toLowerCase().includes(search.toLowerCase());
-	}));
+	    	return (item.name.first + ' ' + item.name.last).toLowerCase().includes(search.toLowerCase());
+		}));
     }
     const [fullRes, setFullRes] = useState([]);
     const [subRes, setSubRes] = useState([]);
@@ -48,10 +48,10 @@ export default function ConnectionsScreen() {
 
     const [profileVisible, setProfileVisible] = useState(false);
     const [currentProf, setCurrentProf] = useState({
-	picture: {large: null}, 
-	name: {first: null, last: null}, 
-	login: {username: null}}
-    );
+		picture: {large: null}, 
+		name: {first: null, last: null}, 
+		login: {username: null}
+	});
 
     const ProfileView = () => {
 	return (
@@ -63,30 +63,34 @@ export default function ConnectionsScreen() {
 	    >
 	        <View
 	    	    style={{
-			flex: 1,
-			justifyContent: 'center',
-			alignItems: 'center',
-			marginTop: 100,
-			marginBottom: 100,
-			marginRight: 50,
-			marginLeft: 50,
-			backgroundColor: 'white',
-			borderRadius: 20, 
-		    }}
+					flex: 1,
+					justifyContent: 'center',
+					alignItems: 'center',
+					marginTop: 100,
+					marginBottom: 100,
+					marginRight: 50,
+					marginLeft: 50,
+					backgroundColor: 'white',
+					borderRadius: 20, 
+		    	}}
 	    	>
-				<TouchableOpacity onPress={() => setProfileVisible(!profileVisible)}><Text>X</Text></TouchableOpacity>
+				<TouchableOpacity onPress={() => setProfileVisible(!profileVisible)}>
+					<Text>X</Text>
+				</TouchableOpacity>
     	        <Image 
-	           	style={{
-			    height: '15%',
-			    width: '30%',
-			    borderRadius: 50
-		    	}} 
-	    		source={{uri: currentProf.picture.large}}
+	           		style={{
+			    		height: '15%',
+			    		width: '30%',
+			    		borderRadius: 50
+		    		}} 
+	    			source={{uri: currentProf.picture.large}}
 	    	    />
-	        <Text style={{
-			fontSize: 20,
-			fontWeight: 'bold',
-		    }}>
+	        	<Text 
+					style={{
+						fontSize: 20,
+						fontWeight: 'bold',
+		    		}}
+				>
 	    		{currentProf.name.first} {currentProf.name.last}
 	    	    </Text>
 	    	    <Text>{currentProf.email}</Text>
@@ -100,51 +104,53 @@ export default function ConnectionsScreen() {
     return ( 
 	<View style={styles.container}>
         <SearchBar 
-	    round 
-	    placeHolder="Type here..."
-            onChangeText={
-                updateSearch
-            }
-	    onCancel={() => setSubRes('')}
-	    onClear={() => setSubRes('')}
-	    showCancel={true}
-            value={
-                search
-            }
+	    	round 
+	    	placeHolder="Type here..."
+            onChangeText={updateSearch}
+	    	onCancel={() => setSubRes('')}
+	    	onClear={() => setSubRes('')}
+	    	showCancel={true}
+            value={search}
         />
 	<ProfileView/>
 	<FlatList
-	    style={{
-	    }}
 	    data={subRes}
-            renderItem={({item}) => (
-		<View style={styles.item}>
-		<Text onPress={
-		    () => {
-			setCurrentProf(item);
-		    	setProfileVisible(true);
-		    }}> 
-		    {item.name.first} {item.name.last} 
-		</Text>
-		</View>
-            )}
+        renderItem={({item}) => (
+			<View style={styles.item}>
+				<Text onPress={
+		    		() => {
+						setCurrentProf(item);
+		    			setProfileVisible(true);
+		    		}
+				}> 
+		    		{item.name.first} {item.name.last} 
+				</Text>
+			</View>
+        )}
 	    ItemSeparatorComponent={ItemSeparatorView}
 	    keyExtractor={(item) => item.login.username}
-        />
-	<View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}>
+    />
+	<View style={{
+		flex: 1, 
+		flexDirection: 'row', 
+		flexWrap: 'wrap', 
+		alignItems: 'center', 
+		justifyContent: 'center'
+	}}>
 	{Users.map((user) => (
-	    <Image style={{
-		height: 75, 
-		width: 75, 
-		borderRadius: 50, 
-		margin: 10, 
-		borderWidth: 2
-	    }} 
+	    <Image 
+			style={{
+				height: 75, 
+				width: 75, 
+				borderRadius: 50, 
+				margin: 10, 
+				borderWidth: 2
+		    }} 
 	        source={{uri: user.picture.large}}
 	    	onPress={() => {
 		    setCurrentProf(user);
 		    setProfileVisible(true);
-		}}
+			}}
 	    />
 	))}	
 	</View>
