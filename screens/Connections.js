@@ -14,14 +14,15 @@ import {
 } from "react-native";
 import { SearchBar } from 'react-native-elements';
 import Users from '../constants/Users';
-import { Feather } from '@expo/vector-icons';
 
 export default function ConnectionsScreen() {
     const [search, setSearch] = useState("");
     const updateSearch = (search) => {
         setSearch(search);
         setSubRes(fullRes.filter((item) => {
-	    	return (item.name.first + ' ' + item.name.last).toLowerCase().includes(search.toLowerCase());
+	    	return item.name.first.toLowerCase().includes(search.toLowerCase())
+				|| item.name.last.toLowerCase().includes(search.toLowerCase())
+				|| (item.name.first.toLowerCase() + ' ' + item.name.last.toLowerCase()).includes(search.toLowerCase());
 		}));
     }
     const [fullRes, setFullRes] = useState([]);
@@ -30,7 +31,7 @@ export default function ConnectionsScreen() {
     const fetchData = async () => {
         const data = await fetch("https://randomuser.me/api/?results=50").then(res => res.json());
         setFullRes(data.results);
-        setSubRes('');
+        setSubRes(fullRes);
     }
 
     useEffect(() => fetchData(), []);
@@ -131,8 +132,8 @@ export default function ConnectionsScreen() {
 	    	round 
 	    	placeHolder="Type here..."
             onChangeText={updateSearch}
-	    	onCancel={() => setSubRes('')}
-	    	onClear={() => setSubRes('')}
+	    	onCancel={() => setSubRes(fullRes)}
+	    	onClear={() => setSubRes(fullRes)}
 	    	showCancel={true}
             value={search}
         />
