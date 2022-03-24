@@ -56,13 +56,13 @@ export default function ConnectionsScreen() {
 	});
 
     const ProfileView = () => {
-	return (
-	    <Modal
-	       	animationType="slide"
-	    	transparent={true}
-	    	visible={profileVisible}
-	    	onRequestClose={() => setProfileVisible(!profileVisible)}
-	    >
+		return (
+	    	<Modal
+	       		animationType="slide"
+	    		transparent={true}
+	    		visible={profileVisible}
+	    		onRequestClose={() => setProfileVisible(!profileVisible)}
+	    	>
 	        <View
 	    	    style={{
 					flex: 1,
@@ -101,7 +101,18 @@ export default function ConnectionsScreen() {
 				>
 	    		{currentProf.name.first} {currentProf.name.last}
 	    	    </Text>
-	    	    <Text>{currentProf.email}</Text>
+				<Text>
+					This user is {currentProf.role == 'experiencer' ? 'an' : 'a'} {currentProf.role}
+				</Text>
+				<Text 
+					style={{
+						fontSize: 12,
+						marginLeft: 20,
+						marginRight: 20,
+					}}
+				>
+					{currentProf.description}
+				</Text>
 				</View>
 				<TouchableOpacity 
 					onPress={() => setProfileVisible(!profileVisible)}
@@ -137,40 +148,33 @@ export default function ConnectionsScreen() {
 	    	showCancel={true}
             value={search}
         />
-	<ProfileView/>
-	<FlatList
-	    data={subRes}
-        renderItem={({item}) => (
-			<TouchableOpacity 
-				style={styles.item}
-				onPress={() => {
-					setCurrentProf(item);
-					setProfileVisible(true);
-				}}
-			>
-				<Image
-					style={{
-						height: 75, 
-						width: 75, 
-						borderRadius: 50, 
-						margin: 10, 
-						borderWidth: 2
-			    	}} 
-					source={{uri: item.picture.large}}
-				/>
-				<Text onPress={
-		    		() => {
+		<ProfileView/>
+		<FlatList
+		    data={Users}
+	        renderItem={({item}) => (
+				<TouchableOpacity 
+					style={styles.item}
+					onPress={() => {
 						setCurrentProf(item);
-		    			setProfileVisible(true);
-		    		}
-				}> 
-		    		{item.name.first} {item.name.last} 
-				</Text>
-			</TouchableOpacity>
-        )}
-	    ItemSeparatorComponent={ItemSeparatorView}
-	    keyExtractor={(item) => item.login.username}
-    />
+						setProfileVisible(true);
+					}}
+				>
+					<Image
+						style={{
+							height: 75, 
+							width: 75, 
+							borderRadius: 50, 
+							margin: 10, 
+							borderWidth: 2
+				    	}} 
+						source={{uri: item.picture.large}}
+					/>
+					<Text>{item.name.first} {item.name.last}</Text>
+				</TouchableOpacity>
+	        )}
+		    ItemSeparatorComponent={ItemSeparatorView}
+		    keyExtractor={(item) => item.login.username}
+	    />
 	</View>
     );
 }

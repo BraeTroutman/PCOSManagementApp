@@ -52,7 +52,9 @@ export default [{
         "medium": "https://randomuser.me/api/portraits/med/men/72.jpg",
         "thumbnail": "https://randomuser.me/api/portraits/thumb/men/72.jpg"
     },
-    "nat": "ES"
+    "nat": "ES",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non sollicitudin urna. Nulla ut sapien placerat tellus congue iaculis. Integer viverra tellus nec enim porttitor, ullamcorper lobortis mi ultrices. Mauris quis vestibulum risus, et fringilla neque. Vestibulum ultrices ipsum in lorem est.",
+    "role": "mentor"
 }, {
     "gender": "female",
     "name": {
@@ -107,7 +109,9 @@ export default [{
         "medium": "https://randomuser.me/api/portraits/med/women/2.jpg",
         "thumbnail": "https://randomuser.me/api/portraits/thumb/women/2.jpg"
     },
-    "nat": "IR"
+    "nat": "IR",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non sollicitudin urna. Nulla ut sapien placerat tellus congue iaculis. Integer viverra tellus nec enim porttitor, ullamcorper lobortis mi ultrices. Mauris quis vestibulum risus, et fringilla neque. Vestibulum ultrices ipsum in lorem est.",
+    "role": "experiencer"
 }, {
     "gender": "male",
     "name": {
@@ -162,7 +166,9 @@ export default [{
         "medium": "https://randomuser.me/api/portraits/med/men/72.jpg",
         "thumbnail": "https://randomuser.me/api/portraits/thumb/men/72.jpg"
     },
-    "nat": "NZ"
+    "nat": "NZ",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non sollicitudin urna. Nulla ut sapien placerat tellus congue iaculis. Integer viverra tellus nec enim porttitor, ullamcorper lobortis mi ultrices. Mauris quis vestibulum risus, et fringilla neque. Vestibulum ultrices ipsum in lorem est.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non sollicitudin urna. Nulla ut sapien placerat tellus congue iaculis. Integer viverra tellus nec enim porttitor, ullamcorper lobortis mi ultrices. Mauris quis vestibulum risus, et fringilla neque. Vestibulum ultrices ipsum in lorem est.",
+    "role": "friend"
 }, {
     "gender": "female",
     "name": {
@@ -217,7 +223,9 @@ export default [{
         "medium": "https://randomuser.me/api/portraits/med/women/95.jpg",
         "thumbnail": "https://randomuser.me/api/portraits/thumb/women/95.jpg"
     },
-    "nat": "GB"
+    "nat": "GB",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non sollicitudin urna. Nulla ut sapien placerat tellus congue iaculis. Integer viverra tellus nec enim porttitor, ullamcorper lobortis mi ultrices. Mauris quis vestibulum risus, et fringilla neque. Vestibulum ultrices ipsum in lorem est.",
+    "role": "experiencer"
 }, {
     "gender": "male",
     "name": {
@@ -272,7 +280,9 @@ export default [{
         "medium": "https://randomuser.me/api/portraits/med/men/64.jpg",
         "thumbnail": "https://randomuser.me/api/portraits/thumb/men/64.jpg"
     },
-    "nat": "IE"
+    "nat": "IE",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non sollicitudin urna. Nulla ut sapien placerat tellus congue iaculis. Integer viverra tellus nec enim porttitor, ullamcorper lobortis mi ultrices. Mauris quis vestibulum risus, et fringilla neque. Vestibulum ultrices ipsum in lorem est.",
+    "role": "friend"
 }, {
     "gender": "female",
     "name": {
@@ -327,7 +337,9 @@ export default [{
         "medium": "https://randomuser.me/api/portraits/med/women/23.jpg",
         "thumbnail": "https://randomuser.me/api/portraits/thumb/women/23.jpg"
     },
-    "nat": "CH"
+    "nat": "CH",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non sollicitudin urna. Nulla ut sapien placerat tellus congue iaculis. Integer viverra tellus nec enim porttitor, ullamcorper lobortis mi ultrices. Mauris quis vestibulum risus, et fringilla neque. Vestibulum ultrices ipsum in lorem est.",
+    "role": "mentor"
 }, {
     "gender": "female",
     "name": {
@@ -382,7 +394,9 @@ export default [{
         "medium": "https://randomuser.me/api/portraits/med/women/31.jpg",
         "thumbnail": "https://randomuser.me/api/portraits/thumb/women/31.jpg"
     },
-    "nat": "IR"
+    "nat": "IR",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non sollicitudin urna. Nulla ut sapien placerat tellus congue iaculis. Integer viverra tellus nec enim porttitor, ullamcorper lobortis mi ultrices. Mauris quis vestibulum risus, et fringilla neque. Vestibulum ultrices ipsum in lorem est.",
+    "role": "mentor"
 }, {
     "gender": "male",
     "name": {
@@ -437,7 +451,9 @@ export default [{
         "medium": "https://randomuser.me/api/portraits/med/men/82.jpg",
         "thumbnail": "https://randomuser.me/api/portraits/thumb/men/82.jpg"
     },
-    "nat": "IE"
+    "nat": "IE",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non sollicitudin urna. Nulla ut sapien placerat tellus congue iaculis. Integer viverra tellus nec enim porttitor, ullamcorper lobortis mi ultrices. Mauris quis vestibulum risus, et fringilla neque. Vestibulum ultrices ipsum in lorem est.",
+    "role": "friend"
 }, {
     "gender": "female",
     "name": {
@@ -492,7 +508,9 @@ export default [{
         "medium": "https://randomuser.me/api/portraits/med/women/49.jpg",
         "thumbnail": "https://randomuser.me/api/portraits/thumb/women/49.jpg"
     },
-    "nat": "DK"
+    "nat": "DK",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non sollicitudin urna. Nulla ut sapien placerat tellus congue iaculis. Integer viverra tellus nec enim porttitor, ullamcorper lobortis mi ultrices. Mauris quis vestibulum risus, et fringilla neque. Vestibulum ultrices ipsum in lorem est.",
+    "role": "friend"
 }, {
     "gender": "male",
     "name": {
@@ -547,5 +565,7 @@ export default [{
         "medium": "https://randomuser.me/api/portraits/med/men/62.jpg",
         "thumbnail": "https://randomuser.me/api/portraits/thumb/men/62.jpg"
     },
-    "nat": "NL"
+    "nat": "NL",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non sollicitudin urna. Nulla ut sapien placerat tellus congue iaculis. Integer viverra tellus nec enim porttitor, ullamcorper lobortis mi ultrices. Mauris quis vestibulum risus, et fringilla neque. Vestibulum ultrices ipsum in lorem est.",
+    "role": "friend"
 }]
