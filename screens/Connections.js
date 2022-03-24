@@ -67,21 +67,27 @@ export default function ConnectionsScreen() {
 					flex: 1,
 					justifyContent: 'center',
 					alignItems: 'center',
+					flexDirection: 'column',
 					marginTop: 100,
 					marginBottom: 100,
 					marginRight: 50,
 					marginLeft: 50,
 					backgroundColor: 'white',
-					borderRadius: 20, 
+					borderRadius: 20,
 		    	}}
+				elevation={5}
 	    	>
-				<TouchableOpacity onPress={() => setProfileVisible(!profileVisible)}>
-					<Text>X</Text>
-				</TouchableOpacity>
+				<View
+					style={{
+						flex: 7,
+						alignItems: 'center',
+						justifyContent: 'center',
+					}}
+				>
     	        <Image 
 	           		style={{
-			    		height: '15%',
-			    		width: '30%',
+			    		height: 100,
+						width: 100,
 			    		borderRadius: 50
 		    		}} 
 	    			source={{uri: currentProf.picture.large}}
@@ -95,6 +101,22 @@ export default function ConnectionsScreen() {
 	    		{currentProf.name.first} {currentProf.name.last}
 	    	    </Text>
 	    	    <Text>{currentProf.email}</Text>
+				</View>
+				<TouchableOpacity 
+					onPress={() => setProfileVisible(!profileVisible)}
+					elevation={5}
+					style={{
+						flex: 1,
+						justifyContent: 'center',
+						alignItems: 'center',
+						backgroundColor: '#eeeeff',
+						width: '100%',
+						borderBottomLeftRadius: 20,
+						borderBottomRightRadius: 20,
+					}}
+				>
+					<Text style={{fontWeight: 'bold'}}>Close</Text>
+				</TouchableOpacity>
 	    	</View>
 	    </Modal>
 	);
