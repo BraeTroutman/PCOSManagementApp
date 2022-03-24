@@ -10,10 +10,11 @@ import {
     Modal,
     Image,
 	TouchableOpacity,
-	TouchableWithoutFeedback
+	ScrollView
 } from "react-native";
 import { SearchBar } from 'react-native-elements';
 import Users from '../constants/Users';
+import { Feather } from '@expo/vector-icons';
 
 export default function ConnectionsScreen() {
     const [search, setSearch] = useState("");
@@ -104,6 +105,7 @@ export default function ConnectionsScreen() {
     return ( 
 	<View style={styles.container}>
         <SearchBar 
+			style={{flex: 1}}
 	    	round 
 	    	placeHolder="Type here..."
             onChangeText={updateSearch}
@@ -116,7 +118,23 @@ export default function ConnectionsScreen() {
 	<FlatList
 	    data={subRes}
         renderItem={({item}) => (
-			<View style={styles.item}>
+			<TouchableOpacity 
+				style={styles.item}
+				onPress={() => {
+					setCurrentProf(item);
+					setProfileVisible(true);
+				}}
+			>
+				<Image
+					style={{
+						height: 75, 
+						width: 75, 
+						borderRadius: 50, 
+						margin: 10, 
+						borderWidth: 2
+			    	}} 
+					source={{uri: item.picture.large}}
+				/>
 				<Text onPress={
 		    		() => {
 						setCurrentProf(item);
@@ -125,35 +143,11 @@ export default function ConnectionsScreen() {
 				}> 
 		    		{item.name.first} {item.name.last} 
 				</Text>
-			</View>
+			</TouchableOpacity>
         )}
 	    ItemSeparatorComponent={ItemSeparatorView}
 	    keyExtractor={(item) => item.login.username}
     />
-	<View style={{
-		flex: 1, 
-		flexDirection: 'row', 
-		flexWrap: 'wrap', 
-		alignItems: 'center', 
-		justifyContent: 'center'
-	}}>
-	{Users.map((user) => (
-	    <Image 
-			style={{
-				height: 75, 
-				width: 75, 
-				borderRadius: 50, 
-				margin: 10, 
-				borderWidth: 2
-		    }} 
-	        source={{uri: user.picture.large}}
-	    	onPress={() => {
-		    setCurrentProf(user);
-		    setProfileVisible(true);
-			}}
-	    />
-	))}	
-	</View>
 	</View>
     );
 }
@@ -162,11 +156,16 @@ const styles = StyleSheet.create({
     container: {
 	
     },
+	infoText: {
+		fontSize: 18,
+		fontWeight: 'bold',
+		color: 'navy',
+	},
     item: {
-	flex: 1,
-	flexDirection: 'row',
-	padding: 10,
-	alignItems: 'center',
+		flex: 1,
+		flexDirection: 'row',
+		padding: 10,
+		alignItems: 'center',
     },
 });
 
