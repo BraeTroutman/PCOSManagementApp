@@ -2,18 +2,22 @@ import React, { useState, useEffect } from 'react';
 import {
     StyleSheet,
     FlatList,
-    TextInput,
     View,
-    SafeAreaView,
     Text,
-    StatusBar,
     Modal,
     Image,
 	TouchableOpacity,
-	ScrollView
 } from "react-native";
 import { SearchBar } from 'react-native-elements';
-import Users from '../constants/Users';
+import { 
+	genRands,
+	genRand,
+	FirstName,
+	LastName,
+	ProfilePic,
+	Description,
+} from 'random-object-gen';
+import { v4 } from 'uuid';
 
 export default function ConnectionsScreen() {
     const [search, setSearch] = useState("");
@@ -27,15 +31,29 @@ export default function ConnectionsScreen() {
     }
     const [fullRes, setFullRes] = useState([]);
     const [subRes, setSubRes] = useState([]);
+	
+	const Users = genRands({
+		name: {
+			first: FirstName, 
+			last: LastName
+		},
+		picture: {
+			large: ProfilePic,
+		},
+		role: ['experiencer', 'mentor', 'friend'],
+		description: Description,
+	}, 50);
 
     const fetchData = async () => {
         const data = await fetch("https://randomuser.me/api/?results=50").then(res => res.json());
-        setFullRes(data.results);
-        setSubRes(fullRes);
+        setFullRes(Users);
+        setSubRes(Users);
+		console.log(Users);
     }
 
     useEffect(() => fetchData(), []);
 
+	
     const ItemSeparatorView = () => {
         return (
             // Flat List Item Separator
@@ -47,8 +65,8 @@ export default function ConnectionsScreen() {
             />
         );
     };
-
-    const [profileVisible, setProfileVisible] = useState(false);
+    
+	const [profileVisible, setProfileVisible] = useState(false);
     const [currentProf, setCurrentProf] = useState({
 		picture: {large: null}, 
 		name: {first: null, last: null}, 
@@ -134,8 +152,6 @@ export default function ConnectionsScreen() {
 	);
     }
 
-    const [users, setUsers] = useState(Users);
-
     return ( 
 	<View style={styles.container}>
         <SearchBar 
@@ -150,7 +166,7 @@ export default function ConnectionsScreen() {
         />
 		<ProfileView/>
 		<FlatList
-		    data={Users}
+		    data={subRes}
 	        renderItem={({item}) => (
 				<TouchableOpacity 
 					style={styles.item}
@@ -173,7 +189,7 @@ export default function ConnectionsScreen() {
 				</TouchableOpacity>
 	        )}
 		    ItemSeparatorComponent={ItemSeparatorView}
-		    keyExtractor={(item) => item.login.username}
+			keyExtractor={(item) => item.name.first + item.name.last}
 	    />
 	</View>
     );
