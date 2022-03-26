@@ -16,6 +16,7 @@ import {
 	ProfilePic,
 	Description,
 } from 'random-object-gen';
+import ItemSeparatorView from '../components/ItemSeparatorView';
 
 export default function ConnectionsScreen() {
     const [search, setSearch] = useState("");
@@ -51,18 +52,6 @@ export default function ConnectionsScreen() {
     }
     useEffect(() => fetchData(), []);
 	
-    const ItemSeparatorView = () => {
-        return (
-            // Flat List Item Separator
-            <View style = {{
-                    height: 0.5,
-                    width: '100%',
-                    backgroundColor: '#C8C8C8',
-                }}
-            />
-        );
-    };
-    
 	const [profileVisible, setProfileVisible] = useState(false);
     const [currentProf, setCurrentProf] = useState({
 		picture: {large: null}, 
@@ -72,12 +61,12 @@ export default function ConnectionsScreen() {
 
     const ProfileView = () => {
 		return (
-	    	<Modal
-	       		animationType="slide"
-	    		transparent={true}
-	    		visible={profileVisible}
-	    		onRequestClose={() => setProfileVisible(!profileVisible)}
-	    	>
+	    <Modal
+	       	animationType="slide"
+	    	transparent={true}
+	    	visible={profileVisible}
+	    	onRequestClose={() => setProfileVisible(!profileVisible)}
+	    >
 	        <View
 	    	    style={{
 					flex: 1,
