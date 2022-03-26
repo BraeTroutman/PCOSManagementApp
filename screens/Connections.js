@@ -11,13 +11,11 @@ import {
 import { SearchBar } from 'react-native-elements';
 import { 
 	genRands,
-	genRand,
 	FirstName,
 	LastName,
 	ProfilePic,
 	Description,
 } from 'random-object-gen';
-import { v4 } from 'uuid';
 
 export default function ConnectionsScreen() {
     const [search, setSearch] = useState("");
@@ -32,7 +30,7 @@ export default function ConnectionsScreen() {
     const [fullRes, setFullRes] = useState([]);
     const [subRes, setSubRes] = useState([]);
 	
-	const Users = genRands({
+	const userTemplate = {
 		name: {
 			first: FirstName, 
 			last: LastName
@@ -42,7 +40,8 @@ export default function ConnectionsScreen() {
 		},
 		role: ['experiencer', 'mentor', 'friend'],
 		description: Description,
-	}, 50);
+	};
+	const Users = genRands(userTemplate, 50);
 
     const fetchData = async () => {
         const data = await fetch("https://randomuser.me/api/?results=50").then(res => res.json());
@@ -50,9 +49,7 @@ export default function ConnectionsScreen() {
         setSubRes(Users);
 		console.log(Users);
     }
-
     useEffect(() => fetchData(), []);
-
 	
     const ItemSeparatorView = () => {
         return (
@@ -211,4 +208,3 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
     },
 });
-
