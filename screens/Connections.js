@@ -140,7 +140,21 @@ export default function ConnectionsScreen() {
     return ( 
 	<View style={styles.container}>
         <SearchBar 
-			style={{flex: 1}}
+			style={{
+				flex: 1,
+			}}
+			inputStyle={{
+				backgroundColor: 'white',
+			}}
+			inputContainerStyle={{
+				backgroundColor:'white' 
+			}}
+			containerStyle={{
+				backgroundColor: 'white',
+				borderWidth: 1,
+				borderRadius: 5,
+			}}
+			placeholderTextColor="#ace1af"
 	    	round 
 	    	placeHolder="Type here..."
             onChangeText={updateSearch}
