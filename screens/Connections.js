@@ -48,7 +48,6 @@ export default function ConnectionsScreen() {
         const data = await fetch("https://randomuser.me/api/?results=50").then(res => res.json());
         setFullRes(Users);
         setSubRes(Users);
-		console.log(Users);
     }
     useEffect(() => fetchData(), []);
 	
