@@ -45,16 +45,12 @@ export default function ForumScreen({ navigation }) {
                 renderItem={({item}) => Post(item)}
                 keyExtractor={(post) => post.user.first + post.user.last}
             />
-            <Button
-	              title="Initial Login Screen"
-	              onPress={() => navigation.navigate('InitialLogin')}
-	        />
             <FAB
                 visible={true}
                 placement="right" 
                 title="+"
                 onPress={() => navigation.navigate('InitialLogin')}
-            ></FAB>
+            />
         </View>
     );
 }
