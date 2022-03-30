@@ -5,13 +5,13 @@ import {
     Image,
     StyleSheet,
     Dimensions,
-    Button,
+    Pressable,
 } from 'react-native';
-import { AntDesign } from '@expo/vector-icons'; 
-import { FontAwesome } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 export default function Post(props) {
     const {content, user, interaction} = props;
+    const [liked, setLiked] = useState(false);
 
     return (
         <View style={styles.post}>
@@ -29,8 +29,13 @@ export default function Post(props) {
                 <Text style={styles.contentText}>{props.content.text}</Text>
             </View>
             <View style={styles.interactBar}>
-                <FontAwesome name="bookmark-o" size={24} color="black" />
-                <AntDesign name="hearto" style={styles.like} size={24} color="black" />
+                <Pressable onPress={() => setLiked(!liked)}>
+                <MaterialCommunityIcons
+                    name={liked ? "heart" : "heart-outline"}
+                    size={32}
+                    color={liked ? "red" : "black"}
+                />
+                </Pressable>
             </View>
         </View>
     );
