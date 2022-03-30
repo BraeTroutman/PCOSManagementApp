@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, View, FlatList, Modal, Text} from "react-native";
 import { load, store } from '../utils/AsyncWrapper';
-import { FAB } from 'react-native-elements';
+import { FAB, SearchBar } from 'react-native-elements';
 
 import { 
     genRands, 
@@ -29,16 +29,51 @@ export default function ForumScreen({ navigation }) {
             likes: () => Math.floor(Math.random())*300,
         },
     };
+
     const posts = genRands(postTemplate, 50);
     const [postList, setPostList] = useState([]);
     const fetchData = () => {
         setPostList(posts);
     };
+
+    const [search, setSearch] = useState("hello!");
+    const updateSearch = (search) => {
+        setSearch(search);
+    }
     
     useEffect(() => fetchData(), []);   
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ flex:1, paddingLeft: 5, paddingRight: 5 }}>
+            <View style={{backgroundColor: 'white', paddingBottom: 10}}>
+                <SearchBar
+         			style={{
+        				flex: 1,
+        			}}
+        			inputStyle={{
+        				backgroundColor: 'white',
+        			}}
+        			inputContainerStyle={{
+        				backgroundColor:'white' 
+        			}}
+        			containerStyle={{
+        				backgroundColor: 'white',
+        				borderWidth: 1,
+        				borderRadius: 5,
+        			}}
+        			placeholderTextColor="#ace1af"
+        	    	round 
+        	    	placeHolder="Type here..."
+        	    	showCancel={true}
+                    value={search}
+                    onChangeText={updateSearch}
+                />
+                <View style={{flexDirection: 'row', justifyContent: 'space-evenly', paddingTop: 10}}>
+                <Button title="Stories"/>
+                <Button title="Images"/>
+                <Button title="Reccs"/>
+                </View>
+            </View>
             <FlatList
                 style={{flex: 1}}
                 data={postList}
