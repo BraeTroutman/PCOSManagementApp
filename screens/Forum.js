@@ -77,7 +77,7 @@ export default function ForumScreen({ navigation }) {
             <FlatList
                 style={{flex: 1}}
                 data={postList}
-                renderItem={({item}) => Post(item)}
+                renderItem={({item}) => <Post {...item}/>}
                 keyExtractor={(post) => post.user.first + post.user.last}
             />
             <FAB
