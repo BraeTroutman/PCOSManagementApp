@@ -20,6 +20,38 @@ If you need to install any other packages on in the project, use the expo cli ra
 $ expo install @react-native-storage/async-storage
 ```
 
+## Object Definitions
+### User Object
+
+```js
+const UserTemplate = {
+    name: {
+        first: String,
+        last: String,
+        username: String,
+    },
+    picture: {
+        large: Url,
+    },
+    description: String,
+    role: String,
+    login: {
+        email: String,
+        uuid: String,
+        password: String,
+    },
+    following: Url,
+    followed: Url,
+    liked: Url,
+    settings: {
+        profile: Private | Public,
+        content: List<Strings>,
+        notifs: On | Off,
+        sharing: Everything | OnlyProfile,
+    },
+}
+```
+
 ## Dependencies
 
 ```
