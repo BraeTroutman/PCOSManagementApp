@@ -21,7 +21,7 @@ export default function ForumScreen({ navigation }) {
             pic: ProfilePic,
         },
         content: {
-            type: ['text', 'cappedImage', 'reccomendation'],
+            type: ['IMAGES', 'STORIES', 'RECCS'],
             pic: ProfilePic,
             text: Description,
         },
@@ -30,18 +30,38 @@ export default function ForumScreen({ navigation }) {
         },
     };
 
-    const posts = genRands(postTemplate, 50);
+    const postsLiteral = genRands(postTemplate, 50);
     const [postList, setPostList] = useState([]);
+    const [filteredPosts, setFilteredPosts] = useState([]);
     const fetchData = () => {
-        setPostList(posts);
+        setPostList(postsLiteral);
+        setFilteredPosts(postsLiteral);
     };
 
-    const [search, setSearch] = useState("hello!");
+    const [search, setSearch] = useState("");
     const updateSearch = (search) => {
         setSearch(search);
+        setFilteredPosts(postList.filter(({content}) => {
+            return content.text.toLowerCase().includes(search.toLowerCase());
+        }));
     }
     
-    useEffect(() => fetchData(), []);   
+    useEffect(() => fetchData(), []);
+    
+    const [filterType, setFilterType] = useState('NONE');
+    const [firstRender, setFirstRender] = useState(true);
+    useEffect(() => {
+        if (!firstRender) {
+            if (filterType !== 'NONE') {
+                console.log('changing filter to ', filterType);
+                setFilteredPosts(postList.filter(({content: {type}}) => type === filterType));
+            } else {
+                console.log('resetting filter');
+                setFilteredPosts(postList);
+            }
+        } else {
+            setFirstRender(false);
+        }}, [filterType]);
 
     return (
         <View style={{ flex:1, paddingLeft: 5, paddingRight: 5 }}>
@@ -69,14 +89,26 @@ export default function ForumScreen({ navigation }) {
                     onChangeText={updateSearch}
                 />
                 <View style={{flexDirection: 'row', justifyContent: 'space-evenly', paddingTop: 10}}>
-                <Button title="Stories"/>
-                <Button title="Images"/>
-                <Button title="Reccs"/>
+                <Button 
+                    title="Stories" 
+                    onPress={() => filterType === "STORIES" ? setFilterType("NONE") : setFilterType("STORIES")}
+                    disabled={filterType !== "STORIES" && filterType !== "NONE"}
+                />
+                <Button 
+                    title="Images" 
+                    onPress={() => filterType === "IMAGES" ? setFilterType("NONE") : setFilterType("IMAGES")}
+                    disabled={filterType !== "IMAGES" && filterType !== "NONE"}
+                />
+                <Button 
+                    title="Reccs" 
+                    onPress={() => filterType === "RECCS" ? setFilterType("NONE") : setFilterType("RECCS")}
+                    disabled={filterType !== "RECCS" && filterType !== "NONE"}
+                />
                 </View>
             </View>
             <FlatList
                 style={{flex: 1}}
-                data={postList}
+                data={filteredPosts}
                 renderItem={({item}) => <Post {...item}/>}
                 keyExtractor={(post) => post.user.first + post.user.last}
             />

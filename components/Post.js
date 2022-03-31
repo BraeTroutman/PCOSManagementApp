@@ -23,7 +23,7 @@ export default function Post(props) {
                 <Text style={styles.headerText}>{user.first} {user.last}</Text>
             </View>
             <View styles={styles.content}>
-                {content.type === 'cappedImage' 
+                {content.type === 'IMAGES' 
                     && <Image style={styles.contentImage} source={{uri: content.pic}}/>
                 }
                 <Text style={styles.contentText}>{props.content.text}</Text>
