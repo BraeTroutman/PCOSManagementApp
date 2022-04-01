@@ -3,7 +3,6 @@ import { Button, Text, StyleSheet, View } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Feather, MaterialIcons, FontAwesome5, AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import ProfileScreen from './screens/Profile';
 import ForumScreen from './screens/Forum';
@@ -13,9 +12,9 @@ import TrackingScreen from './screens/Tracking';
 import ConnectionsScreen from './screens/Connections';
 import InitScreen from './screens/InitialScreen';
 import ReportScreen from './screens/Report'
+import MakePostScreen from './screens/MakePost';
 
 import NavIcon from './components/NavIcon';
-import Header from './components/Header';
 
 const Tab = createBottomTabNavigator();
 
@@ -67,11 +66,20 @@ export default function App() {
       	    name={"Report"}
             key={"Report"}
 			options={{
-			tabBarButton: () => null,
-			tabBarVisible: false,
+				tabBarButton: () => null,
+				tabBarVisible: false,
 			}}
       	    component={ReportScreen}
       	/>
+		<Tab.Screen
+			name={"MakePost"}
+			key={"MakePost"}
+			options={{
+				tabBarButton: () => null,
+				tabBarVisible: false,
+			}}
+			component={MakePostScreen}
+		/>
       </Tab.Navigator>
     </NavigationContainer>
   );
