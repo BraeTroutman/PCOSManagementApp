@@ -116,7 +116,7 @@ export default function ForumScreen({ navigation }) {
                 visible={true}
                 placement="right" 
                 title="+"
-                onPress={() => navigation.navigate('InitialLogin')}
+                onPress={() => navigation.navigate('MakePost')}
             />
         </View>
     );
