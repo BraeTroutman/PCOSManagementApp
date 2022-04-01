@@ -117,6 +117,7 @@ export default function ForumScreen({ navigation }) {
                 placement="right" 
                 title="+"
                 onPress={() => navigation.navigate('MakePost')}
+                color="#2196F3"
             />
         </View>
     );

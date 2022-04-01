@@ -43,9 +43,14 @@ export default function MakePostScreen() {
                 <Picker.Item label="Image" value="Image"/>
                 <Picker.Item label="Story" value="Story"/>
             </Picker>
-            <Button title="load picture" onPress={pickImage}/>
-            <Button title="take picture" onPress={takeImage}/>
-            {image && <Image source={{uri: image}} style={styles.image}/>}
+            {
+                selected === 'Image' && 
+                <View>
+                    <Button title="load picture" onPress={pickImage}/>
+                    <Button title="take picture" onPress={takeImage}/>
+                    {image && <Image source={{uri: image}} style={styles.image}/>}
+                </View>
+            }
         </View>
     );
 }
