@@ -4,7 +4,7 @@ import { Picker } from '@react-native-picker/picker';
 import * as ImagePicker from 'expo-image-picker';
 
 export default function MakePostScreen() {
-    const [selected, setSelected] = useState("Experiencer");
+    const [selected, setSelected] = useState('IMAGE');
     const [image, setImage] = useState(null);
 
     const pickImage = async () => {
@@ -35,22 +35,14 @@ export default function MakePostScreen() {
     return (
         <View>
             <Picker
-                selectedValue={selected}
+                selectedValue={PostType}
                 style={styles.picker}
                 onValueChange={(val, idx) => setSelected(val)}
             >
-                <Picker.Item label="Recommendation" value="Recommendation"/>
-                <Picker.Item label="Image" value="Image"/>
-                <Picker.Item label="Story" value="Story"/>
+                <Picker.Item label="Recommendation" value="RECC"/>
+                <Picker.Item label="Image" value="IMAGE"/>
+                <Picker.Item label="Story" value="STORY"/>
             </Picker>
-            {
-                selected === 'Image' && 
-                <View>
-                    <Button title="load picture" onPress={pickImage}/>
-                    <Button title="take picture" onPress={takeImage}/>
-                    {image && <Image source={{uri: image}} style={styles.image}/>}
-                </View>
-            }
         </View>
     );
 }
