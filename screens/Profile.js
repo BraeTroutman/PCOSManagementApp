@@ -7,6 +7,22 @@ import Users from '../constants/Users';
 
 export default function ProfileScreen({ navigation }) {
     const styles = StyleSheet.create({
+	header: {
+		flex: 1,
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'flex-start',
+		width: '100%',
+		padding: 10,
+	},
+	body: {
+		flex: 4,
+	},
+	profPhoto: {
+		height: 100,
+		width: 100,
+		borderRadius: 50,
+	},
 	user: {
 	    fontSize: 30,
 	    fontWeight: '700',
@@ -38,13 +54,15 @@ export default function ProfileScreen({ navigation }) {
     });
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start' }}>
-	<Text style={styles.user}>Username</Text>
+	<View style={styles.header}>
 	<Image 
-	    style={{height: '15%', width: '30%', borderRadius: 50}}
-	    source={{uri: Users[0].picture.large}}
+		style={styles.profPhoto}
+	    source={{uri: Users[3].picture.large}}
 	/>
-	<Button style={styles.myButton}  title="Follow +"/>
-	<Text style={styles.role}>This user is a (insert role)</Text>
+	<Text style={styles.user}>{Users[3].name.first} {Users[3].name.last}</Text>
+	</View>
+	<View style={styles.body}>
+	<Text style={styles.role}>This user is a(n) {Users[3].role}</Text>
 	<Button style={styles.myButton}  title="My Connections" onPress={() => navigation.navigate('Connections')} />
 	<Button style={styles.myButton}  title="Edit Profile"/>
 	<Button style={styles.myButton}  title="Edit Privacy Settings"/>
@@ -55,6 +73,7 @@ export default function ProfileScreen({ navigation }) {
 	<Text style={styles.bio}>Bio...</Text>
 	<Text style={styles.activities}>Recent activity...</Text>
 	<Text style={styles.description}>This is an optional description lorem ipsum dolor sit amet, consectetur adipicking elit, sed do eriusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut</Text>
+	</View>
       </View>
     );
 }
